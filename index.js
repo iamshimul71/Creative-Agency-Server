@@ -3,7 +3,8 @@ const {ObjectId} = require('mongodb')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://creativeAgency:creativeAgency@cluster0.5j0vg.mongodb.net/Agency?retryWrites=true&w=majority"
+require('dotenv').config()
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.5j0vg.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 
 const app = express()
 app.use(bodyParser.json())
@@ -139,4 +140,4 @@ app.post('/isAdmin',(req,res)=>{
 });
 
 
-app.listen(port)
+app.listen(process.env.PORT || port)
